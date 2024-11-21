@@ -3,6 +3,8 @@ import sys
 from PyQt6.QtCore import QSize, QStringListModel
 from PyQt6.QtWidgets import QMainWindow,QHBoxLayout,QPushButton, QWidget, QListView, QVBoxLayout
 from database import Database
+from datetime import datetime
+
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -19,25 +21,11 @@ class MainWindow(QMainWindow):
         self.list_view.setModel(list_model)
         self.list_view.resize(800,600)
 
-        self.add_button = QPushButton("Добавить")
-        self.del_button = QPushButton("Удалить")
-        self.edit_button = QPushButton("Изменить")
-        self.update_button = QPushButton("Обновить")
-        self.update_button.clicked.connect(self.update_list_view_patients)
-        self.otdel_button = QPushButton("Отделение")
+        
 
-
-        buttons = QHBoxLayout()
-        buttons.addWidget(self.add_button)
-        buttons.addWidget(self.del_button)
-        buttons.addWidget(self.edit_button)
-        buttons.addWidget(self.update_button)
-        buttons.addWidget(self.otdel_button)
-        buttons_widget = QWidget()
-        buttons_widget.setLayout(buttons)
+        
 
         layout = QVBoxLayout()
-        layout.addWidget(buttons_widget)
         layout.addWidget(list_widget)
         widget = QWidget()
         widget.setLayout(layout)
