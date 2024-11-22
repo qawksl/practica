@@ -21,10 +21,6 @@ class MainWindow(QMainWindow):
         self.list_view.setModel(list_model)
         self.list_view.resize(800,600)
 
-        
-
-        
-
         layout = QVBoxLayout()
         layout.addWidget(list_widget)
         widget = QWidget()
@@ -37,7 +33,8 @@ class MainWindow(QMainWindow):
         result_raw = db.get_patients()
         result = []
         for r in result_raw:
-            result.append(str(r["id"])+ "."+ r["name"]+ " "+ r["firstname"]+ " "+ r["otchestvo"] )
+            day_births = datetime.strptime(str(r["day_births"]), "%Y-%m-%d").strftime("%d.%m.%Y")
+            result.append(str(r["id"])+ "."+ r["firstname"]+ " "+ r["name"]+ " "+ r["otchestvo"]+ " " + day_births)
         return result
 
     def get_list_model_patients(self):
